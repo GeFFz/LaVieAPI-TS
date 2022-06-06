@@ -27,6 +27,9 @@ export const Psicologos = db.define(
     updatedAt: {
       type: DataTypes.DATE,
     },
+    bairro: {
+      type: DataTypes.STRING,
+    },
   },
   {
     tableName: "psicologos",

@@ -1,17 +1,20 @@
 import { Psicologos } from "../models/psicologos"; 
 import { Request, Response} from "express";
 import bcrypt from "bcryptjs";
+import { ViaCepAPI } from "../externals/viaCep";
 
 export const PsicologoController = {
   async create(req: Request, res: Response) {
     try {
-      const { senha } = req.body;
-
+      const { senha, cep } = req.body;
+      
+      let fullAddress = await ViaCepAPI.getAddress(cep);
       const newSenha = bcrypt.hashSync(senha, 10);
 
       const newPsicologo = await Psicologos.create({
         ...req.body,
         senha: newSenha,
+        bairro: fullAddress.bairro,
       });
 
       return res.status(201).json(newPsicologo);

@@ -6,5 +6,6 @@ export const create = validate({
     email: Joi.string().email().required(),
     senha: Joi.string().required(),
     apresentacao: Joi.string().required(),
+    cep: Joi.string().required(),
   }),
 });
