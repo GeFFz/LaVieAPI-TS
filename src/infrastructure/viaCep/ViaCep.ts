@@ -1,5 +1,5 @@
 import axios, { AxiosInstance } from "axios";
-import { GeoApiInterface } from "../GeoApiInterface";
+import { GeoApiInterface } from "./GeoApiInterface";
 
 export class ViaCep implements GeoApiInterface {
     endpoint: string = 'https://viacep.com.br/';

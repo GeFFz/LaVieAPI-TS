@@ -1,8 +1,8 @@
 const express = require("express");
 const routes = express.Router();
 
-import { PsicologoValidation } from '../validations'
-import { PsicologoController } from '../controllers/psicologo.controller';
+import { PsicologoValidation } from '../domain/psicologo/validations'
+import { PsicologoController } from '../domain/psicologo/controllers/psicologo.controller';
 
 routes.get(
     "/psicologos", 

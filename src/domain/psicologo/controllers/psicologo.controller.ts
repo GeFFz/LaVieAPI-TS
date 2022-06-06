@@ -1,24 +1,15 @@
-import { Psicologos } from "../models/psicologos"; 
-import { Request, Response} from "express";
+import { Psicologos } from "../models/psicologos";
+import { Request, Response } from "express";
 import bcrypt from "bcryptjs";
-import { ViaCepAPI } from "../externals/viaCep";
+import { psicologoService } from "../services";
 
 export const PsicologoController = {
   async create(req: Request, res: Response) {
     try {
-      const { senha, cep } = req.body;
-      
-      let fullAddress = await ViaCepAPI.getAddress(cep);
-      const newSenha = bcrypt.hashSync(senha, 10);
-
-      const newPsicologo = await Psicologos.create({
-        ...req.body,
-        senha: newSenha,
-        bairro: fullAddress.bairro,
-      });
-
+      const newPsicologo = await psicologoService.registerPsicologo(req.body);
       return res.status(201).json(newPsicologo);
     } catch (error) {
+
       return res.status(500).json("Algo errado aconteceu, chame o batman!");
     }
   },
