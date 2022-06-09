@@ -9,5 +9,6 @@ export const update = validate({
     email: Joi.string().email(),
     senha: Joi.string(),
     apresentacao: Joi.string(),
+    cep: Joi.string(),
   }),
 });
